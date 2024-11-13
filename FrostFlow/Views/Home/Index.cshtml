@@ -1,0 +1,25 @@
+﻿@model List<FrostFlow.Models.AirConditioner>
+
+<div class="container">
+    <h2>Available Air Conditioners</h2>
+
+    <div class="row">
+        @foreach (var airConditioner in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <!-- Displaying the image with a max size of 150px -->
+                    <img src="@airConditioner.ImageUrl" alt="@airConditioner.ModelName" class="card-img-top small-image" />
+                    <div class="card-body">
+                        <h5 class="card-title">@airConditioner.ModelName</h5>
+                        <p class="card-text">@airConditioner.Description</p>
+                        <p><strong>@airConditioner.Price</strong></p>
+                        <a href="@Url.Action("Details", "AirConditioner", new { id = airConditioner.Id })" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

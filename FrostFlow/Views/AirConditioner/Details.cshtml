@@ -1,0 +1,18 @@
+﻿@model FrostFlow.Models.AirConditioner
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>@Model.ModelName</h2>
+
+<div>
+    <p>Brand: @Model.Brand</p>
+    <p>Price: @Model.Price</p>
+    <p>Description: @Model.Description</p>
+    <p>
+        <img src="@Model.ImageUrl" alt="@Model.ModelName" class="small-image" />
+    </p>
+</div>
+
+<a href="@Url.Action("Index", "AirConditioner")">Back to List</a>

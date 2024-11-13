@@ -1,0 +1,29 @@
+﻿@model IEnumerable<FrostFlow.Models.AirConditioner>
+
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<h2>Search Results</h2>
+
+<form method="get" asp-action="Search">
+    <input type="text" name="searchTerm" placeholder="Search by model name or description" class="form-control" />
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<div class="row">
+    @foreach (var ac in Model)
+    {
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="@ac.ImageUrl" class="card-img-top" alt="@ac.ModelName" />
+                <div class="card-body">
+                    <h5 class="card-title">@ac.ModelName</h5>
+                    <p class="card-text">@ac.Description</p>
+                    <p class="card-text">Price: @ac.Price</p>
+                    <a href="@Url.Action("Details", "AirConditioner", new { id = ac.Id })" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
