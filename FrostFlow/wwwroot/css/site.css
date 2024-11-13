@@ -1,9 +1,8 @@
 /* Style for the images in Home (Index) */
 .small-image {
-    max-width: 150px; /* Set max width for images */
-    max-height: 150px; /* Set max height for images */
-    object-fit: contain; /* Ensure the image maintains its aspect ratio */
-    margin: 0 auto; /* Center the image horizontally */
+    max-height: 150px;
+    object-fit: cover;
+    width: 100%;
 }
 
 /* Adjust the grid for displaying items */

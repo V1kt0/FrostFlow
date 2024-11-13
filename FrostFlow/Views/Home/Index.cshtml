@@ -8,8 +8,7 @@
         {
             <div class="col-md-4">
                 <div class="card mb-3">
-                    <!-- Displaying the image with a max size of 150px -->
-                    <img src="@airConditioner.ImageUrl" alt="@airConditioner.ModelName" class="card-img-top small-image" />
+                    <img src="@airConditioner.ImageUrl" alt="@airConditioner.ModelName" class="card-img-top small-image" style="max-height: 150px; object-fit: cover;" />
                     <div class="card-body">
                         <h5 class="card-title">@airConditioner.ModelName</h5>
                         <p class="card-text">@airConditioner.Description</p>
@@ -21,5 +20,3 @@
         }
     </div>
 </div>
-
-

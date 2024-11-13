@@ -22,7 +22,9 @@ namespace FrostFlow.Controllers
         // GET: AirConditioner
         public async Task<IActionResult> Index()
         {
-            return View(await _context.AirConditioners.ToListAsync());
+            var airConditioners = await _context.AirConditioners.ToListAsync();
+            Console.WriteLine($"Total AirConditioners: {airConditioners.Count}");  // Log count for verification
+            return View(airConditioners);
         }
 
         // GET: AirConditioner/Details/5
@@ -54,35 +56,15 @@ namespace FrostFlow.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ModelName,Brand,Price,Description,ImageUrl")] AirConditioner airConditioner, IFormFile image)
+        public async Task<IActionResult> Create([Bind("Id,ModelName,Brand,Price,Description,ImageUrl")] AirConditioner airConditioner)
         {
             if (ModelState.IsValid)
             {
-                // Handle image upload
-                if (image != null && image.Length > 0)
-                {
-                    // Generate a unique file name to avoid file name conflicts
-                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
-
-                    // Define the path where the image will be saved
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
-
-                    // Save the image to the specified path
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await image.CopyToAsync(stream);
-                    }
-
-                    // Save the image URL (relative to the wwwroot folder) to the ImageUrl property
-                    airConditioner.ImageUrl = $"/images/{fileName}";
-                }
-
-                // Add the air conditioner to the database
-                _context.Add(airConditioner);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                _context.Add(airConditioner);  // Add the new AirConditioner to the context
+                await _context.SaveChangesAsync();  // Save changes to the database
+                return RedirectToAction(nameof(Index));  // Redirect to Index (AirConditioner list)
             }
-            return View(airConditioner);
+            return View(airConditioner);  // Return to the Create view if validation fails
         }
 
         // GET: AirConditioner/Edit/5

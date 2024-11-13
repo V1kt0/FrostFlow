@@ -1,6 +1,7 @@
 using FrostFlow.Data;
 using FrostFlow.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace FrostFlow.Controllers
@@ -14,29 +15,10 @@ namespace FrostFlow.Controllers
             _context = context;
         }
 
-        // Index page - shows all AC models initially
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var airConditioners = _context.AirConditioners.ToList();
+            var airConditioners = await _context.AirConditioners.ToListAsync();
             return View(airConditioners);
-        }
-
-        // Search page - handles search query and filters AC models
-        public IActionResult Search(string query)
-        {
-            // If no query is provided, return all air conditioners
-            if (string.IsNullOrWhiteSpace(query))
-            {
-                var airConditioners = _context.AirConditioners.ToList();
-                return View("Index", airConditioners);
-            }
-
-            // Perform search based on model name or brand
-            var searchResults = _context.AirConditioners
-                .Where(ac => ac.ModelName.Contains(query) || ac.Brand.Contains(query))
-                .ToList();
-
-            return View("Index", searchResults);
         }
     }
 }
