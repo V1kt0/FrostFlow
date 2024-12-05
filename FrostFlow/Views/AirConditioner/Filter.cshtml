@@ -1,0 +1,50 @@
+﻿@model FrostFlow.Models.FilterAirConditionerViewModel
+
+<h1>Filter Air Conditioners</h1>
+
+<form method="get" asp-action="Filter">
+    <label for="type">Type:</label>
+    <select id="type" name="selectedType" onchange="this.form.submit()">
+        <option value="">All</option>
+        div class="filter-categories">
+        <ul class="list-unstyled">
+            <li>
+                <a asp-action="Filter" asp-route-type="" class="@(string.IsNullOrEmpty(Model.SelectedType) ? "active" : "")">
+                    Всички
+                </a>
+            </li>
+            @foreach (var type in Model.Types)
+
+            {
+                <li>
+                    <a asp-action="Filter" asp-route-type="@type" class="@(type == Model.SelectedType ? "active" : "")">
+                        @type
+                    </a>
+                </li>
+            }
+        </ul>
+        </div>
+    </select>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ac in Model.AirConditioners)
+        {
+            <tr>
+                <td>@ac.ModelName</td>
+                <td>@ac.Brand</td>
+                <td>@ac.Price</td>
+                <td>@ac.Type</td>
+            </tr>
+        }
+    </tbody>
+</table>

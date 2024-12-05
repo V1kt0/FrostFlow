@@ -1,0 +1,23 @@
+﻿.filter-categories ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.filter-categories li {
+    margin: 5px 0;
+}
+
+.filter-categories a {
+    text-decoration: none;
+    color: #0056b3; /* Blue */
+    font-weight: bold;
+}
+
+    .filter-categories a.active {
+        color: #d9534f; /* Red for active link */
+    }
+
+    .filter-categories a:hover {
+        text-decoration: underline;
+    }

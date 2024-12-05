@@ -20,5 +20,7 @@ namespace FrostFlow.Models
         public string Description { get; set; }
 
         public string ImageUrl { get; set; } // Optional: URL for the air conditioner image
+
+        public string Type { get; set; }
     }
 }

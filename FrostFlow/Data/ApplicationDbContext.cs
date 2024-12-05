@@ -56,6 +56,10 @@ namespace FrostFlow.Data
                 .HasIndex(ac => ac.ModelName)
                 .IsUnique(); // Ensure air conditioner models are unique
 
+            modelBuilder.Entity<AirConditioner>()
+                .Property(ac => ac.Type)
+                .IsRequired(); // Make the 'Type' property required
+
             modelBuilder.Entity<Order>()
                 .HasIndex(o => o.OrderDate); // Optional: Index on OrderDate for better performance
         }

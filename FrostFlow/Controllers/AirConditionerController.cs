@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using FrostFlow.Data;
+﻿using FrostFlow.Data;
 using FrostFlow.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FrostFlow.Controllers
 {
@@ -51,26 +46,24 @@ namespace FrostFlow.Controllers
             return View();
         }
 
-        // POST: AirConditioner/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ModelName,Brand,Price,Description,ImageUrl")] AirConditioner airConditioner)
+        public async Task<IActionResult> Create([Bind("Id,ModelName,Brand,Price,Description,ImageUrl,Type")] AirConditioner airConditioner)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(airConditioner);  // Add the new AirConditioner to the context
-                await _context.SaveChangesAsync();  // Save changes to the database
-                return RedirectToAction(nameof(Index));  // Redirect to Index (AirConditioner list)
+                _context.Add(airConditioner);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            return View(airConditioner);  // Return to the Create view if validation fails
+            return View(airConditioner);
         }
+
 
         // GET: AirConditioner/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ModelName,Brand,Price,Description,ImageUrl")] AirConditioner airConditioner, IFormFile image)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ModelName,Brand,Price,Description,ImageUrl,Type")] AirConditioner airConditioner)
         {
             if (id != airConditioner.Id)
             {
@@ -81,25 +74,6 @@ namespace FrostFlow.Controllers
             {
                 try
                 {
-                    // Handle image upload if a new image is selected
-                    if (image != null && image.Length > 0)
-                    {
-                        // Generate a unique file name
-                        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
-
-                        // Define the path where the image will be saved
-                        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
-
-                        // Save the image
-                        using (var stream = new FileStream(filePath, FileMode.Create))
-                        {
-                            await image.CopyToAsync(stream);
-                        }
-
-                        // Update the image URL
-                        airConditioner.ImageUrl = $"/images/{fileName}";
-                    }
-
                     _context.Update(airConditioner);
                     await _context.SaveChangesAsync();
                 }
@@ -125,7 +99,7 @@ namespace FrostFlow.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ModelName,Brand,Price,Description,ImageUrl")] AirConditioner airConditioner)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ModelName,Brand,Price,Description,ImageUrl,Type")] AirConditioner airConditioner, IFormFile image)
         {
             if (id != airConditioner.Id)
             {
@@ -136,6 +110,18 @@ namespace FrostFlow.Controllers
             {
                 try
                 {
+                    // Handle image upload if a new image is selected
+                    if (image != null && image.Length > 0)
+                    {
+                        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+                        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await image.CopyToAsync(stream);
+                        }
+                        airConditioner.ImageUrl = $"/images/{fileName}";
+                    }
+
                     _context.Update(airConditioner);
                     await _context.SaveChangesAsync();
                 }
@@ -152,24 +138,6 @@ namespace FrostFlow.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(airConditioner);
-        }
-
-        // GET: AirConditioner/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var airConditioner = await _context.AirConditioners
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (airConditioner == null)
-            {
-                return NotFound();
-            }
-
             return View(airConditioner);
         }
 
@@ -191,6 +159,25 @@ namespace FrostFlow.Controllers
         private bool AirConditionerExists(int id)
         {
             return _context.AirConditioners.Any(e => e.Id == id);
+        }
+
+        public IActionResult Filter(string selectedType)
+        {
+            var viewModel = new FilterAirConditionerViewModel
+            {
+                AirConditioners = string.IsNullOrEmpty(selectedType) ?
+                    _context.AirConditioners.ToList() :
+                    _context.AirConditioners.Where(ac => ac.Type == selectedType).ToList(),
+
+                Types = _context.AirConditioners
+                    .Select(ac => ac.Type)
+                    .Distinct()
+                    .ToList(),
+
+                SelectedType = selectedType
+            };
+
+            return View(viewModel);
         }
     }
 }
