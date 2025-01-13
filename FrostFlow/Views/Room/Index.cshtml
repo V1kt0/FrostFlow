@@ -1,0 +1,17 @@
+@model FrostFlow.Models.Room
+
+<form asp-action="Calculate" method="post">
+    <div>
+        <label>Length (feet):</label>
+        <input asp-for="Length" />
+    </div>
+    <div>
+        <label>Width (feet):</label>
+        <input asp-for="Width" />
+    </div>
+    <div>
+        <label>Height (feet):</label>
+        <input asp-for="Height" />
+    </div>
+    <button type="submit">Calculate</button>
+</form>
