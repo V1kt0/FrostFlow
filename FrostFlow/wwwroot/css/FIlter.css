@@ -1,23 +1,38 @@
-﻿.filter-categories ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+.filter-categories .list-group-item {
+  border: none;
+  background: #f8f9fa;
+  transition: background 0.3s ease-in-out;
 }
 
-.filter-categories li {
-    margin: 5px 0;
-}
-
-.filter-categories a {
+  /* Link Styling */
+  .filter-categories .list-group-item a {
     text-decoration: none;
-    color: #0056b3; /* Blue */
     font-weight: bold;
+    color: #007bff;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+
+    /* Active Link Styling */
+    .filter-categories .list-group-item a.active {
+      color: white;
+      background-color: #007bff;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
+    /* Hover Effect */
+    .filter-categories .list-group-item a:hover {
+      background-color: #0056b3;
+      color: white;
+    }
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .filter-categories .list-group-item a {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
 }
-
-    .filter-categories a.active {
-        color: #d9534f; /* Red for active link */
-    }
-
-    .filter-categories a:hover {
-        text-decoration: underline;
-    }

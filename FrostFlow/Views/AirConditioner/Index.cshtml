@@ -1,66 +1,49 @@
-﻿@model IEnumerable<FrostFlow.Models.AirConditioner>
+@model IEnumerable<FrostFlow.Models.AirConditioner>
+
+<link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
 
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Air Conditioners";
 }
 
-<h1>Index</h1>
+<div class="container mt-4">
+	<h1 class="text-primary">Air Conditioners</h1>
 
-<p>
-	<a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-	<thead>
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.ModelName)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Brand)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Price)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Description)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.ImageUrl)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Type)
-			</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.ModelName)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Brand)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Price)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Description)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.ImageUrl)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Type)
-				</td>
-				<td>
-					<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-					<a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-					<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-				</td>
-			</tr>
-		}
-	</tbody>
-</table>
+	<div class="mb-3">
+		<a asp-action="Create" class="btn btn-success">➕ Add New Air Conditioner</a>
+	</div>
+
+	<div class="table-responsive">
+		<table class="table table-bordered table-hover">
+			<thead class="table-primary text-center">
+				<tr>
+					<th>Model Name</th>
+					<th>Brand</th>
+					<th>Price ($)</th>
+					<th>Cooling Capacity (BTU)</th>
+					<th>Type</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>@item.ModelName</td>
+						<td>@item.Brand</td>
+						<td class="text-success fw-bold">$@item.Price</td>
+						<td>@item.CoolingCapacity</td>
+						<td>@item.Type</td>
+						<td>
+							<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">✏️ Edit</a>
+							<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">ℹ️ Details</a>
+							<form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
+								<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">🗑️ Delete</button>
+							</form>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

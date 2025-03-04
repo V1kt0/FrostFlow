@@ -1,4 +1,4 @@
-﻿@model List<FrostFlow.Models.AirConditioner>
+@model List<FrostFlow.Models.AirConditioner>
 
 <div class="container">
     <h2>Available Air Conditioners</h2>
@@ -8,7 +8,6 @@
         {
             <div class="col-md-4">
                 <div class="card mb-3">
-                    <img src="@airConditioner.ImageUrl" alt="@airConditioner.ModelName" class="card-img-top small-image" style="max-height: 150px; object-fit: cover;" />
                     <div class="card-body">
                         <h5 class="card-title">@airConditioner.ModelName</h5>
                         <p class="card-text">@airConditioner.Description</p>

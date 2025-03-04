@@ -1,59 +1,70 @@
-﻿@model FrostFlow.Models.AirConditioner
+@model FrostFlow.Models.AirConditioner
+
+<link rel="stylesheet" href="~/css/AirConditionerEdit.css" asp-append-version="true" />
 
 @{
-    ViewData["Title"] = "Edit";
+	ViewData["Title"] = "Edit Air Conditioner";
 }
 
-<h1>Edit</h1>
+<div class="container">
+	<h1>Edit Air Conditioner</h1>
+	<h4>Update the details for your Air Conditioner</h4>
+	<hr />
 
-<h4>AirConditioner</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="ModelName" class="control-label"></label>
-                <input asp-for="ModelName" class="form-control" />
-                <span asp-validation-for="ModelName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Brand" class="control-label"></label>
-                <input asp-for="Brand" class="form-control" />
-                <span asp-validation-for="Brand" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageUrl" class="control-label"></label>
-                <input asp-for="ImageUrl" class="form-control" />
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Type" class="control-label"></label>
-                <input asp-for="Type" class="form-control" />
-                <span asp-validation-for="Type" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+	<div class="row">
+		<div class="col-md-6">
+			<!-- Note the asp-route-id attribute below -->
+			<form asp-action="Edit" asp-route-id="@Model.Id">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<input type="hidden" asp-for="Id" />
 
-<div>
-    <a asp-action="Index">Back to List</a>
+				<div class="form-group">
+					<label asp-for="ModelName" class="control-label">Model Name</label>
+					<input asp-for="ModelName" class="form-control" />
+					<span asp-validation-for="ModelName" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Brand" class="control-label">Brand</label>
+					<input asp-for="Brand" class="form-control" />
+					<span asp-validation-for="Brand" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Price" class="control-label">Price</label>
+					<input asp-for="Price" class="form-control" type="number" step="0.01" />
+					<span asp-validation-for="Price" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Description" class="control-label">Description</label>
+					<textarea asp-for="Description" class="form-control"></textarea>
+					<span asp-validation-for="Description" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Type" class="control-label">Type</label>
+					<input asp-for="Type" class="form-control" />
+					<span asp-validation-for="Type" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="CoolingCapacity" class="control-label">Cooling Capacity (BTU)</label>
+					<input asp-for="CoolingCapacity" class="form-control" type="number" />
+					<span asp-validation-for="CoolingCapacity" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Save Changes</button>
+					<a asp-action="Index" class="btn btn-secondary ml-2">Back to List</a>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

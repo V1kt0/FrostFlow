@@ -1,17 +1,27 @@
 @model FrostFlow.Models.Room
 
+<link rel="stylesheet" href="~/css/Calculator.css" asp-append-version="true" />
+
 <form asp-action="Calculate" method="post">
-    <div>
-        <label>Length (feet):</label>
-        <input asp-for="Length" />
-    </div>
-    <div>
-        <label>Width (feet):</label>
-        <input asp-for="Width" />
-    </div>
-    <div>
-        <label>Height (feet):</label>
-        <input asp-for="Height" />
-    </div>
-    <button type="submit">Calculate</button>
+	<div>
+		<label>Length (meters):</label>
+		<input asp-for="Length" type="number" step="0.1" required />
+	</div>
+	<div>
+		<label>Width (meters):</label>
+		<input asp-for="Width" type="number" step="0.1" required />
+	</div>
+	<div>
+		<label>Height (meters):</label>
+		<input asp-for="Height" type="number" step="0.1" required />
+	</div>
+	<div>
+		<label>Room Usage:</label>
+		<select asp-for="Usage" required>
+			<option value="bedroom">Bedroom</option>
+			<option value="living-room">Living Room</option>
+			<option value="kitchen">Kitchen</option>
+		</select>
+	</div>
+	<button type="submit">Calculate</button>
 </form>

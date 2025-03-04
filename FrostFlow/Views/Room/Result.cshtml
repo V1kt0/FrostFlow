@@ -1,8 +1,21 @@
 @model FrostFlow.Models.Room
 
 <h2>Calculation Result</h2>
-<p>Length: @Model.Length feet</p>
-<p>Width: @Model.Width feet</p>
-<p>Height: @Model.Height feet</p>
-<p>Required Cooling Capacity: @Model.BTU BTUs</p>
+<p><strong>Length:</strong> @Model.Length meters</p>
+<p><strong>Width:</strong> @Model.Width meters</p>
+<p><strong>Height:</strong> @Model.Height meters</p>
+<p><strong>Room Usage:</strong> @Model.Usage</p>
+<p><strong>Required Cooling Capacity:</strong> @Model.BTU BTUs</p>
+
+@if (ViewData["BestAC"] != null)
+{
+	var bestAC = (FrostFlow.Models.AirConditioner)ViewData["BestAC"];
+	<h3>The best AC for this room is: @bestAC.ModelName</h3>
+	<p><strong>Brand:</strong> @bestAC.Brand</p>
+	<p><strong>Price:</strong> $@bestAC.Price</p>
+	<p><strong>Cooling Capacity:</strong> @bestAC.CoolingCapacity BTU</p>
+	<p><strong>Type:</strong> @bestAC.Type</p>
+	<p><strong>Description:</strong> @bestAC.Description</p>
+}
+
 <a asp-action="Index">Back</a>

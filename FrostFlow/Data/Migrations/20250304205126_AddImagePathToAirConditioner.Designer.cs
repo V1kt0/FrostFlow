@@ -4,6 +4,7 @@ using FrostFlow.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FrostFlow.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250304205126_AddImagePathToAirConditioner")]
+    partial class AddImagePathToAirConditioner
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,7 +64,7 @@ namespace FrostFlow.Data.Migrations
                     b.HasIndex("ModelName")
                         .IsUnique();
 
-                    b.ToTable("AirConditioners", (string)null);
+                    b.ToTable("AirConditioners");
                 });
 
             modelBuilder.Entity("FrostFlow.Models.Customer", b =>
@@ -95,7 +98,7 @@ namespace FrostFlow.Data.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("FrostFlow.Models.Order", b =>
@@ -123,7 +126,7 @@ namespace FrostFlow.Data.Migrations
 
                     b.HasIndex("OrderDate");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("FrostFlow.Models.Payment", b =>
@@ -151,7 +154,7 @@ namespace FrostFlow.Data.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("Payments", (string)null);
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("FrostFlow.Models.Room", b =>
@@ -180,7 +183,7 @@ namespace FrostFlow.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Rooms", (string)null);
+                    b.ToTable("Rooms");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

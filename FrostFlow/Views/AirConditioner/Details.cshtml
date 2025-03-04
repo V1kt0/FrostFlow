@@ -1,19 +1,24 @@
-﻿@model FrostFlow.Models.AirConditioner
+@model FrostFlow.Models.AirConditioner
+
+<link rel="stylesheet" href="~/css/AirConditionerDetails.css" asp-append-version="true" />
 
 @{
-    ViewData["Title"] = "Details";
+	ViewData["Title"] = "Details";
 }
 
-<h2>@Model.ModelName</h2>
+<div class="container">
+	<h2>@Model.ModelName</h2>
 
-<div>
-    <p>Brand: @Model.Brand</p>
-    <p>Price: @Model.Price</p>
-    <p>Description: @Model.Description</p>
-    <p>Type: @Model.Type</p>
-    <p>
-        <img src="@Model.ImageUrl" alt="@Model.ModelName" class="small-image" />
-    </p>
+	<div class="row">
+		<div class="col-md-6">
+		</div>
+		<div class="col-md-6">
+			<p><strong>Brand:</strong> @Model.Brand</p>
+			<p><strong>Price:</strong> @Model.Price</p>
+			<p><strong>Description:</strong> @Model.Description</p>
+			<p><strong>Type:</strong> @Model.Type</p>
+		</div>
+	</div>
+
+	<a href="@Url.Action("Index", "AirConditioner")" class="btn btn-primary mt-3">Back to List</a>
 </div>
-
-<a href="@Url.Action("Index", "AirConditioner")">Back to List</a>

@@ -1,0 +1,99 @@
+/* Custom styling for the Delete page */
+.container {
+  margin-top: 30px;
+  padding: 25px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1, h3 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #dc3545; /* Danger color */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+h4 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #343a40;
+}
+
+/* Description list styling */
+dl dt {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+dl dd {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Form group styling */
+.form-group {
+  margin-top: 25px;
+  text-align: center;
+}
+
+/* Button styling */
+.btn-danger {
+  font-size: 1.2rem;
+  padding: 12px 20px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+  .btn-danger:hover {
+    background-color: #c82333;
+    cursor: pointer;
+  }
+
+.btn-secondary {
+  font-size: 1.2rem;
+  padding: 12px 20px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+  .btn-secondary:hover {
+    background-color: #5a6268;
+  }
+
+a.btn {
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+/* Mobile-responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  h1, h3 {
+    font-size: 2rem;
+  }
+
+  h4 {
+    font-size: 1.3rem;
+  }
+
+  .btn-danger, .btn-secondary {
+    width: 100%;
+    padding: 12px;
+  }
+}

@@ -1,0 +1,106 @@
+/* Styling for the entire form */
+form {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out;
+}
+
+  form:hover {
+    transform: scale(1.02);
+  }
+
+/* Form group layout */
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+  /* Input fields styling */
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+
+    .form-group input:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+      outline: none;
+    }
+
+/* Button styling */
+button {
+  padding: 12px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+/* Calculation result styling */
+.result-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  margin-top: 30px;
+  transition: transform 0.3s ease-in-out;
+}
+
+  .result-container:hover {
+    transform: scale(1.02);
+  }
+
+  /* Result text */
+  .result-container p {
+    font-size: 1.2rem;
+    color: #333;
+  }
+
+  .result-container strong {
+    color: #007bff;
+  }
+
+/* Secondary button styling */
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  padding: 12px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+  text-align: center;
+  transition: background 0.3s ease-in-out;
+}
+
+  .btn-secondary:hover {
+    background-color: #5a6268;
+  }
+
+/* Responsive design */
+@media (max-width: 600px) {
+  form {
+    padding: 15px;
+  }
+
+  button, .btn-secondary {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .result-container {
+    padding: 15px;
+  }
+}

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FrostFlow.Models.AirConditioner>
+@model IEnumerable<FrostFlow.Models.AirConditioner>
 
 @{
     ViewData["Title"] = "Search Results";
@@ -16,7 +16,6 @@
     {
         <div class="col-sm-4">
             <div class="card">
-                <img src="@ac.ImageUrl" class="card-img-top" alt="@ac.ModelName" />
                 <div class="card-body">
                     <h5 class="card-title">@ac.ModelName</h5>
                     <p class="card-text">@ac.Description</p>

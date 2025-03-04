@@ -1,0 +1,79 @@
+/* Custom styling for the Create Air Conditioner form */
+.container {
+  margin-top: 30px;
+  padding: 25px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styling */
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #007bff; /* Primary blue */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Form group label */
+.form-group label {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #343a40;
+}
+
+/* Form control (input fields) */
+.form-control {
+  font-size: 1rem;
+  padding: 0.75rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  margin-bottom: 15px;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+  .form-control:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+/* Primary button styling */
+.btn-primary {
+  font-size: 1.1rem;
+  padding: 0.75rem 1.25rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+  }
+
+/* Mobile-responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .form-control {
+    padding: 0.65rem;
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 12px;
+  }
+}
