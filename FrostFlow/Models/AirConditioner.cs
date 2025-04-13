@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FrostFlow.Models
 {
@@ -14,6 +15,7 @@ namespace FrostFlow.Models
 
     [Required(ErrorMessage = "Price is required")]
     [Range(1, double.MaxValue, ErrorMessage = "Price must be greater than 0")]
+    [Column(TypeName = "decimal(18,2)")]
     public decimal Price { get; set; }
 
     public string Description { get; set; }

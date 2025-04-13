@@ -41,13 +41,9 @@ namespace FrostFlow.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ModelName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -58,10 +54,32 @@ namespace FrostFlow.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ModelName")
-                        .IsUnique();
-
                     b.ToTable("AirConditioners", (string)null);
+                });
+
+            modelBuilder.Entity("FrostFlow.Models.CartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AirConditionerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AirConditionerId");
+
+                    b.ToTable("CartItems", (string)null);
                 });
 
             modelBuilder.Entity("FrostFlow.Models.Customer", b =>
@@ -79,7 +97,7 @@ namespace FrostFlow.Data.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -91,9 +109,6 @@ namespace FrostFlow.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
 
                     b.ToTable("Customers", (string)null);
                 });
@@ -121,37 +136,7 @@ namespace FrostFlow.Data.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("OrderDate");
-
                     b.ToTable("Orders", (string)null);
-                });
-
-            modelBuilder.Entity("FrostFlow.Models.Payment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("PaymentDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PaymentMethod")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("Payments", (string)null);
                 });
 
             modelBuilder.Entity("FrostFlow.Models.Room", b =>
@@ -385,6 +370,17 @@ namespace FrostFlow.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("FrostFlow.Models.CartItem", b =>
+                {
+                    b.HasOne("FrostFlow.Models.AirConditioner", "AirConditioner")
+                        .WithMany()
+                        .HasForeignKey("AirConditionerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AirConditioner");
+                });
+
             modelBuilder.Entity("FrostFlow.Models.Order", b =>
                 {
                     b.HasOne("FrostFlow.Models.AirConditioner", "AirConditioner")
@@ -402,17 +398,6 @@ namespace FrostFlow.Data.Migrations
                     b.Navigation("AirConditioner");
 
                     b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("FrostFlow.Models.Payment", b =>
-                {
-                    b.HasOne("FrostFlow.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

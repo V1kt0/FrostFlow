@@ -11,6 +11,7 @@ namespace FrostFlow.Controllers
   public class AirConditionerController : Controller
   {
     private readonly ApplicationDbContext _context;
+    private const int PageSize = 10;  // Define how many items per page
 
     public AirConditionerController(ApplicationDbContext context)
     {
@@ -18,11 +19,29 @@ namespace FrostFlow.Controllers
     }
 
     // GET: AirConditioner
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int page = 1)
     {
-      var airConditioners = await _context.AirConditioners.ToListAsync();
-      Console.WriteLine($"Loaded {airConditioners.Count} AC units");
-      return View(airConditioners);
+      // Total number of records
+      var totalItems = await _context.AirConditioners.CountAsync();
+
+      // Calculate total pages
+      var totalPages = (int)Math.Ceiling(totalItems / (double)PageSize);
+
+      // Fetch the records for the current page
+      var airConditioners = await _context.AirConditioners
+          .Skip((page - 1) * PageSize)
+          .Take(PageSize)
+          .ToListAsync();
+
+      // Pass the data to the view
+      var viewModel = new AirConditionerIndexViewModel
+      {
+        AirConditioners = airConditioners,
+        CurrentPage = page,
+        TotalPages = totalPages
+      };
+
+      return View(viewModel);
     }
 
     // GET: AirConditioner/Details/5

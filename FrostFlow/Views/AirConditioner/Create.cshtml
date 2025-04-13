@@ -6,43 +6,54 @@
 	ViewData["Title"] = "Add New Air Conditioner";
 }
 
-<h2>Add New Air Conditioner</h2>
+<div class="container d-flex justify-content-center mt-5">
+	<div class="card shadow-lg rounded-4 p-4" style="max-width: 600px; width: 100%;">
+		<h2 class="text-center text-primary fw-bold">➕ Add New Air Conditioner</h2>
+		<hr>
 
-<form asp-action="Create">
-	<div class="form-group">
-		<label asp-for="ModelName" class="control-label"></label>
-		<input asp-for="ModelName" class="form-control" />
-		<span asp-validation-for="ModelName" class="text-danger"></span>
+		<form asp-action="Create">
+			<div class="form-floating mb-3">
+				<input asp-for="ModelName" class="form-control" placeholder="Model Name" />
+				<label asp-for="ModelName">Model Name</label>
+				<span asp-validation-for="ModelName" class="text-danger"></span>
+			</div>
+
+			<div class="form-floating mb-3">
+				<input asp-for="Brand" class="form-control" placeholder="Brand" />
+				<label asp-for="Brand">Brand</label>
+				<span asp-validation-for="Brand" class="text-danger"></span>
+			</div>
+
+			<div class="form-floating mb-3">
+				<input asp-for="Price" type="number" class="form-control" placeholder="Price" />
+				<label asp-for="Price">Price ($)</label>
+				<span asp-validation-for="Price" class="text-danger"></span>
+			</div>
+
+			<div class="form-floating mb-3">
+				<textarea asp-for="Description" class="form-control" placeholder="Description" style="height: 100px;"></textarea>
+				<label asp-for="Description">Description</label>
+			</div>
+
+			<div class="form-floating mb-3">
+				<input asp-for="Type" class="form-control" placeholder="Type" />
+				<label asp-for="Type">Type</label>
+				<span asp-validation-for="Type" class="text-danger"></span>
+			</div>
+
+			<div class="form-floating mb-3">
+				<input asp-for="CoolingCapacity" type="number" class="form-control" placeholder="Cooling Capacity" />
+				<label asp-for="CoolingCapacity">Cooling Capacity (BTU)</label>
+				<span asp-validation-for="CoolingCapacity" class="text-danger"></span>
+			</div>
+
+			<div class="d-flex justify-content-between">
+				<a asp-action="Index" class="btn btn-secondary rounded-pill px-4">⬅️ Back</a>
+				<button type="submit" class="btn btn-primary rounded-pill px-4">💾 Save</button>
+			</div>
+		</form>
 	</div>
+</div>
 
-	<div class="form-group">
-		<label asp-for="Brand" class="control-label"></label>
-		<input asp-for="Brand" class="form-control" />
-		<span asp-validation-for="Brand" class="text-danger"></span>
-	</div>
-
-	<div class="form-group">
-		<label asp-for="Price" class="control-label"></label>
-		<input asp-for="Price" type="number" class="form-control" />
-		<span asp-validation-for="Price" class="text-danger"></span>
-	</div>
-
-	<div class="form-group">
-		<label asp-for="Description" class="control-label"></label>
-		<textarea asp-for="Description" class="form-control"></textarea>
-	</div>
-
-	<div class="form-group">
-		<label asp-for="Type" class="control-label"></label>
-		<input asp-for="Type" class="form-control" />
-		<span asp-validation-for="Type" class="text-danger"></span>
-	</div>
-
-	<div class="form-group">
-		<label asp-for="CoolingCapacity" class="control-label"></label>
-		<input asp-for="CoolingCapacity" type="number" class="form-control" />
-		<span asp-validation-for="CoolingCapacity" class="text-danger"></span>
-	</div>
-
-	<button type="submit" class="btn btn-primary">Save</button>
-</form>
+<!-- FontAwesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">

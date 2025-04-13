@@ -1,28 +1,46 @@
 @model IEnumerable<FrostFlow.Models.AirConditioner>
 
 @{
-    ViewData["Title"] = "Search Results";
+	ViewData["Title"] = "Search Results";
 }
 
-<h2>Search Results</h2>
+<link rel="stylesheet" href="~/css/SearchResults.css" asp-append-version="true" />
 
-<form method="get" asp-action="Search">
-    <input type="text" name="searchTerm" placeholder="Search by model name or description" class="form-control" />
-    <button type="submit" class="btn btn-primary">Search</button>
-</form>
+<div class="container mt-4">
+	<h2 class="text-center text-primary fw-bold">🔍 Search Results</h2>
 
-<div class="row">
-    @foreach (var ac in Model)
-    {
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">@ac.ModelName</h5>
-                    <p class="card-text">@ac.Description</p>
-                    <p class="card-text">Price: @ac.Price</p>
-                    <a href="@Url.Action("Details", "AirConditioner", new { id = ac.Id })" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-        </div>
-    }
+	<div class="d-flex justify-content-center my-3">
+		<form method="get" asp-action="Search" class="w-50 d-flex shadow-sm rounded-pill p-2 bg-light">
+			<input type="text" name="searchTerm" placeholder="🔎 Search by model name or description..." class="form-control border-0 bg-light" />
+			<button type="submit" class="btn btn-primary rounded-pill px-4">Search</button>
+		</form>
+	</div>
+
+	@if (!Model.Any())
+	{
+		<div class="alert alert-warning text-center" role="alert">
+			❌ No results found. Try a different keyword!
+		</div>
+	}
+	else
+	{
+		<div class="row">
+			@foreach (var ac in Model)
+			{
+				<div class="col-md-4 mb-4">
+					<div class="card shadow-lg rounded-4 border-0">
+						<div class="card-body">
+							<h5 class="card-title text-primary fw-bold">@ac.ModelName</h5>
+							<p class="card-text text-muted">@ac.Description</p>
+							<p class="fw-bold text-success fs-5">💰 $@ac.Price</p>
+							<a href="@Url.Action("Details", "AirConditioner", new { id = ac.Id })" class="btn btn-info rounded-pill w-100">📄 View Details</a>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	}
 </div>
+
+<!-- FontAwesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
