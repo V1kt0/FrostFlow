@@ -135,20 +135,9 @@ namespace FrostFlow.Controllers
         OrderDate = DateTime.Now,
         Address = model.Address,
         PaymentMethod = model.PaymentMethod,
-        OrderItems = new List<OrderItem>() // Initialize the list
       };
 
-      // Add cart items as OrderItems
-      foreach (var cartItem in cartItems)
-      {
-        order.OrderItems.Add(new OrderItem
-        {
-          AirConditionerId = cartItem.AirConditionerId, // Assign AirConditionerId
-          Quantity = cartItem.Quantity,
-          Price = cartItem.AirConditioner.Price
-        });
-      }
-
+    
       _context.Orders.Add(order);
       _context.CartItems.RemoveRange(cartItems);
       await _context.SaveChangesAsync();

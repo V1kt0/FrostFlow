@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FrostFlow.Data
 {
-  public class ApplicationDbContext : IdentityDbContext<IdentityUser>  // ✅ Change from DbContext to IdentityDbContext
+  public class ApplicationDbContext : DbContext  // ✅ Change from DbContext to IdentityDbContext
   {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -18,7 +18,13 @@ namespace FrostFlow.Data
     public DbSet<Order> Orders { get; set; }
     public DbSet<Room> Rooms { get; set; }
     public DbSet<CartItem> CartItems { get; set; }
-    public DbSet<OrderItem> OrderItems { get; set; } // Add DbSet for OrderItem
 
-  }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+           
+        }
+    }
 }

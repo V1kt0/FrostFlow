@@ -11,7 +11,7 @@ namespace FrostFlow.Models
 
     [ForeignKey("AirConditionerId")]
     public AirConditioner AirConditioner { get; set; }
-    public Customer Customer { get; set; } // Navigation property
+    public virtual Customer? Customer { get; set; } // Navigation property
 
     [Required]
     public int CustomerId { get; set; }
@@ -34,10 +34,6 @@ namespace FrostFlow.Models
     [Required]
     public string PaymentMethod { get; set; }
 
-    // Navigation property for the order items (multiple air conditioners)
-    public ICollection<OrderItem> OrderItems { get; set; } // One-to-many relationship with OrderItem
-
-    // Calculated property for total amount
-    public decimal TotalAmount => OrderItems != null ? OrderItems.Sum(item => item.Price * item.Quantity) : 0;
+   
   }
 }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace DreamsAI.Controllers
+namespace FrostFlow.Controllers
 {
   public class AccountController : Controller
   {

@@ -33,7 +33,7 @@ namespace FrostFlow.Controllers
                 return NotFound();
             }
 
-            var order = new OrderItem { AirConditionerId = airConditioner.Id, AirConditioner = airConditioner };
+            var order = new Order{ AirConditionerId = airConditioner.Id, AirConditioner = airConditioner };
             return View(order);
         }
 
