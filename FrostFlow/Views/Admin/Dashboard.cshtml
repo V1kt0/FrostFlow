@@ -1,0 +1,101 @@
+@model FrostFlow.Models.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center">Admin Dashboard</h1>
+        </div>
+    </div>
+
+    <!-- Summary Section -->
+    <div class="row mt-5">
+        <div class="col-md-3">
+            <div class="card text-center border-primary shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Total Air Conditioners</h5>
+                    <p class="card-text display-6 text-primary">@Model.TotalAirConditioners</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center border-success shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Average Price</h5>
+                    <p class="card-text display-6 text-success">@Model.AveragePrice.ToString("C")</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center border-warning shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Cheapest Air Conditioner</h5>
+                    <p class="card-text display-6 text-warning">@Model.CheapestAirConditioner.ToString("C")</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center border-danger shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Top Brand</h5>
+                    <p class="card-text display-6 text-danger">@Model.TopBrand</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="row mt-5">
+        <div class="col">
+            <h3 class="text-center">Brand Distribution</h3>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <canvas id="brandChart" style="max-height: 400px;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Fetch chart data from the ChartData endpoint
+        fetch('@Url.Action("ChartData", "Admin")')
+            .then(response => response.json())
+            .then(data => {
+                const labels = data.map(item => item.label);
+                const values = data.map(item => item.value);
+
+                const ctx = document.getElementById('brandChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: values,
+                            backgroundColor: [
+                                '#FF6384',
+                                '#36A2EB',
+                                '#FFCE56',
+                                '#4BC0C0',
+                                '#9966FF'
+                            ],
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                        }
+                    }
+                });
+            });
+    </script>
+}

@@ -1,43 +1,20 @@
 body {
-  font-family: 'Arial', sans-serif;
-  background: url('/images/background.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #333;
+  background-color: #f8f9fa; /* Light gray background */
 }
 
-h1 {
-  font-weight: bold;
-  margin-bottom: 20px;
+.table-hover tbody tr:hover {
+  background-color: #f1f1f1; /* Slight hover effect for table rows */
 }
 
-.table {
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
 }
 
-  .table th {
-    text-align: center;
-    background-color: #007bff;
-    color: white;
-    padding: 15px;
+  .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
   }
-
-  .table td {
-    vertical-align: middle;
-    text-align: center;
-  }
-
-.img-thumbnail {
-  border-radius: 8px;
-  border: 2px solid #ddd;
-}
-
-.btn {
-  font-weight: bold;
-  padding: 6px 12px;
-}
 
 .btn-warning {
   background-color: #ffc107;
@@ -59,7 +36,12 @@ h1 {
     border-color: #117a8b;
   }
 
-.btn-danger:hover {
-  background-color: #c82333;
-  border-color: #bd2130;
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
 }
+
+  .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+  }

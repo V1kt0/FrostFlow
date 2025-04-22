@@ -4,40 +4,47 @@
 	ViewData["Title"] = "Register";
 }
 
-<h2>@ViewData["Title"]</h2>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+	<div class="card shadow-lg p-4 rounded-3" style="max-width: 500px; width: 100%;">
+		<h2 class="text-center text-primary fw-bold mb-4">Create an Account</h2>
 
-<form asp-action="Register" method="post" class="form-horizontal">
-	<div class="form-group">
-		<label for="UserName" class="control-label">Username</label>
-		<input asp-for="UserName" class="form-control" />
-		<span asp-validation-for="UserName" class="text-danger"></span>
+		<form asp-action="Register" method="post">
+			<!-- Username Field -->
+			<div class="form-floating mb-3">
+				<input asp-for="UserName" class="form-control" id="UserName" placeholder="Username" />
+				<label for="UserName">Username</label>
+				<span asp-validation-for="UserName" class="text-danger"></span>
+			</div>
+
+			<!-- Email Field -->
+			<div class="form-floating mb-3">
+				<input asp-for="Email" class="form-control" id="Email" placeholder="Email" />
+				<label for="Email">Email</label>
+				<span asp-validation-for="Email" class="text-danger"></span>
+			</div>
+
+			<!-- Password Field -->
+			<div class="form-floating mb-3">
+				<input asp-for="Password" type="password" class="form-control" id="Password" placeholder="Password" />
+				<label for="Password">Password</label>
+				<span asp-validation-for="Password" class="text-danger"></span>
+			</div>
+
+			<!-- Confirm Password Field -->
+			<div class="form-floating mb-3">
+				<input asp-for="ConfirmPassword" type="password" class="form-control" id="ConfirmPassword" placeholder="Confirm Password" />
+				<label for="ConfirmPassword">Confirm Password</label>
+				<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+			</div>
+
+			<!-- Register Button -->
+			<button type="submit" class="btn btn-primary w-100">Register</button>
+		</form>
+
+		<div class="text-center mt-3">
+			<p>Already have an account? <a href="/Account/Login" class="text-primary fw-bold">Login here</a></p>
+		</div>
 	</div>
-
-	<div class="form-group">
-		<label for="Email" class="control-label">Email</label>
-		<input asp-for="Email" class="form-control" />
-		<span asp-validation-for="Email" class="text-danger"></span>
-	</div>
-
-	<div class="form-group">
-		<label for="Password" class="control-label">Password</label>
-		<input asp-for="Password" type="password" class="form-control" />
-		<span asp-validation-for="Password" class="text-danger"></span>
-	</div>
-
-	<div class="form-group">
-		<label for="ConfirmPassword" class="control-label">Confirm Password</label>
-		<input asp-for="ConfirmPassword" type="password" class="form-control" />
-		<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-	</div>
-
-	<div class="form-group">
-		<button type="submit" class="btn btn-primary">Register</button>
-	</div>
-</form>
-
-<div>
-	<p>Already have an account? <a href="/Account/Login">Login here</a></p>
 </div>
 
 @section Scripts {

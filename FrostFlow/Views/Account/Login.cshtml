@@ -1,33 +1,50 @@
-	@model FrostFlow.Models.User
+@model FrostFlow.Models.User
 
-	@{
-		ViewData["Title"] = "Login";
-	}
+@{
+    ViewData["Title"] = "Login";
+}
 
-	<link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+<!-- Link to external CSS if additional custom styles are needed -->
+<link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
 
-	<div class="container d-flex justify-content-center align-items-center min-vh-100">
-		<div class="card shadow-lg p-4 rounded-3" style="max-width: 400px; width: 100%;">
-			<h2 class="text-center text-primary fw-bold mb-4">🔑 Login</h2>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <!-- Login Card -->
+    <div class="card shadow-lg p-4 rounded-3" style="max-width: 400px; width: 100%;">
+        <!-- Title -->
+        <h2 class="text-center text-primary fw-bold mb-4">🔑 Login</h2>
 
-			<form asp-action="Login" method="post">
-				<!-- Email Field -->
-				<div class="form-floating mb-3">
-					<input asp-for="Email" class="form-control" id="Email" placeholder="Email" />
-					<label for="Email">Email</label>
-					<span asp-validation-for="Email" class="text-danger"></span>
-				</div>
+        <!-- Login Form -->
+        <form asp-action="Login" method="post">
+            <!-- Email Field -->
+            <div class="form-floating mb-3">
+                <input asp-for="Email" class="form-control" id="Email" placeholder="Email" required />
+                <label for="Email">Email</label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
 
-				<!-- Password Field -->
-				<div class="form-floating mb-3">
-					<input asp-for="Password" type="password" class="form-control" id="Password" placeholder="Password" />
-					<label for="Password">Password</label>
-					<span asp-validation-for="Password" class="text-danger"></span>
-				</div>
+            <!-- Password Field -->
+            <div class="form-floating mb-3">
+                <input asp-for="Password" type="password" class="form-control" id="Password" placeholder="Password" required />
+                <label for="Password">Password</label>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
 
-				<!-- Login Button -->
-				<button type="submit" class="btn btn-primary w-100">Login</button>
-			</form>
-		</div>
-	</div>
+            <!-- Remember Me Checkbox -->
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="RememberMe" />
+                <label class="form-check-label" for="RememberMe">Remember Me</label>
+            </div>
 
+            <!-- Login Button -->
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+
+        <!-- Additional Links -->
+        <div class="text-center mt-3">
+            <a href="/Account/ForgotPassword" class="text-muted">Forgot your password?</a>
+        </div>
+        <div class="text-center mt-2">
+            <a href="/Account/Register" class="text-primary fw-bold">Create an account</a>
+        </div>
+    </div>
+</div>
